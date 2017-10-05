@@ -2,12 +2,15 @@ package jaygoo.weathersamplewithtest.presenter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import jaygoo.weathersamplewithtest.bean.UserBean;
 import jaygoo.weathersamplewithtest.listener.OnLoginListener;
 import jaygoo.weathersamplewithtest.model.LoginModel;
 import jaygoo.weathersamplewithtest.view.ILoginView;
+import jaygoo.weathersamplewithtest.view.activity.WeatherActivity;
 
 /**
  * ================================================
@@ -34,9 +37,12 @@ public class LoginPresenter implements ILoginPresenter{
         loginModel.login(loginView.getUserName(), loginView.getPassWord(),
                 new OnLoginListener() {
                     @Override
-                    public void loginSuccess() {
+                    public void loginSuccess(UserBean user) {
                         Toast.makeText(context,"登录成功",Toast.LENGTH_LONG).show();
-//                        ((Activity)context).finish();
+                        ((Activity)context).startActivity(
+                                new Intent(context, WeatherActivity.class));
+                        ((Activity) context).finish();
+
                     }
 
                     @Override

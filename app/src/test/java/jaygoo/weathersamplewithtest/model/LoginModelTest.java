@@ -10,8 +10,10 @@ import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
 import jaygoo.weathersamplewithtest.MyRobolectricTestRunner;
+import jaygoo.weathersamplewithtest.bean.UserBean;
 import jaygoo.weathersamplewithtest.listener.OnLoginListener;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -45,8 +47,10 @@ public class LoginModelTest {
 
         loginModel.login("123", "123", new OnLoginListener() {
             @Override
-            public void loginSuccess() {
+            public void loginSuccess(UserBean user) {
                 assertTrue(true);
+                assertEquals(user.getUserName(),"123");
+                assertEquals(user.getPassWord(),"123");
                 Log.i("LoginModelTest", "loginSuccess: ");
             }
 
@@ -58,7 +62,7 @@ public class LoginModelTest {
 
         loginModel.login("123", "456", new OnLoginListener() {
             @Override
-            public void loginSuccess() {
+            public void loginSuccess(UserBean user) {
                 assertTrue(false);
             }
 
@@ -71,7 +75,7 @@ public class LoginModelTest {
 
         loginModel.login(null, "456", new OnLoginListener() {
             @Override
-            public void loginSuccess() {
+            public void loginSuccess(UserBean user) {
                 assertTrue(false);
             }
 

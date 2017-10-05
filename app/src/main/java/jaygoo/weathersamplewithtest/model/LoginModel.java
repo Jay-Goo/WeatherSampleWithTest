@@ -2,6 +2,7 @@ package jaygoo.weathersamplewithtest.model;
 
 import android.text.TextUtils;
 
+import jaygoo.weathersamplewithtest.bean.UserBean;
 import jaygoo.weathersamplewithtest.listener.OnLoginListener;
 
 /**
@@ -20,7 +21,10 @@ public class LoginModel implements ILoginModel{
         if (!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(passWord)
                 && userName.equals(passWord)){
             if (onLoginListener != null){
-                onLoginListener.loginSuccess();
+                UserBean userBean = new UserBean();
+                userBean.setUserName(userName);
+                userBean.setPassWord(passWord);
+                onLoginListener.loginSuccess(userBean);
             }
         }else {
             if (onLoginListener != null){

@@ -1,5 +1,7 @@
 package jaygoo.weathersamplewithtest.listener;
 
+import jaygoo.weathersamplewithtest.bean.UserBean;
+
 /**
  * ================================================
  * 作    者：JayGoo
@@ -9,6 +11,6 @@ package jaygoo.weathersamplewithtest.listener;
  * ================================================
  */
 public interface OnLoginListener {
-    void loginSuccess();
+    void loginSuccess(UserBean user);
     void loginFail(String msg);
 }
